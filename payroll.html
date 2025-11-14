@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment #4: Simple Payroll</title>
+    <link rel="stylesheet" href="payroll.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Payroll Calculator</h2>
+
+        <input type="number" id="hours" placeholder="Hours Worked">
+        <input type="number" id="rate" placeholder="Hourly Rate (₱)">
+        <input type="number" id="deductions" placeholder="Deductions (₱)">
+
+        <button onclick="calculatePayroll()">Calculate</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculatePayroll() {
+            let hours = parseFloat(document.getElementById("hours").value);
+            let rate = parseFloat(document.getElementById("rate").value);
+            let deductions = parseFloat(document.getElementById("deductions").value);
+
+            if (isNaN(hours) || isNaN(rate) || isNaN(deductions) || hours < 0 || rate < 0 || deductions < 0) {
+                document.getElementById("result").innerHTML = "Please enter valid positive numbers.";
+                return;
+            }
+
+            let grossPay = hours * rate;
+            let netPay = grossPay - deductions;
+
+            document.getElementById("result").innerHTML = `
+                Gross Pay: ₱${grossPay.toFixed(2)}<br>
+                Deductions: ₱${deductions.toFixed(2)}<br>
+                Net Pay: ₱${netPay.toFixed(2)}
+            `;
+        }
+    </script>
+</body>
+</html>
