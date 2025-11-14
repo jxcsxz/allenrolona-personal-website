@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment #2 - Income Tax Calculator</title>
+    <link rel="stylesheet" href="incometaxcalc.css">
+</head>
+
+<body>
+    <div class="card">
+        <h1>Income Tax Calculator</h1>
+
+        <div class="input-group">
+            <label for="income">Your Income</label>
+            <input type="number" id="income" placeholder="Enter income amount">
+        </div>
+
+        <button onclick="calculateTax()">Calculate</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateTax() {
+            let income = parseFloat(document.getElementById("income").value);
+            let tax = 0;
+
+            if (isNaN(income) || income < 0) {
+                document.getElementById("result").innerHTML = "Please enter a valid income.";
+                return;
+            }
+
+            if (income <= 10000) {
+                tax = income * 0.05;
+            } else if (income <= 30000) {
+                tax = income * 0.10;
+            } else if (income <= 70000) {
+                tax = income * 0.15;
+            } else if (income <= 150000) {
+                tax = income * 0.20;
+            } else {
+                tax = income * 0.30;
+            }
+
+            document.getElementById("result").innerHTML = 
+                "Income Tax: ₱" + tax.toFixed(2);
+        }
+    </script>
+
+</body>
+</html>
