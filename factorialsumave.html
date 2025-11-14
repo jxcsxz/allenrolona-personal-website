@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment #3: Factorial, Sum, Average</title>
+    <link rel="stylesheet" href="factorialsumave.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Factorial, Sum & Average Calculator</h2>
+
+        <input type="number" id="number" placeholder="Enter a positive integer">
+
+        <button onclick="calculate()">Calculate</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculate() {
+            let n = parseInt(document.getElementById("number").value);
+            if (isNaN(n) || n <= 0) {
+                document.getElementById("result").innerHTML = "Please enter a valid positive integer.";
+                return;
+            }
+
+            let factorial = 1;
+            let i = 1;
+            while(i <= n) {
+                factorial *= i;
+                i++;
+            }
+
+            let sum = 0;
+            let j = 1;
+            do {
+                sum += j;
+                j++;
+            } while(j <= n);
+
+            let total = 0;
+            for(let k = 1; k <= n; k++) {
+                total += k;
+            }
+            let average = total / n;
+
+            document.getElementById("result").innerHTML = `
+                Factorial of ${n}: ${factorial}<br>
+                Sum of first ${n} numbers: ${sum}<br>
+                Average of first ${n} numbers: ${average.toFixed(2)}
+            `;
+        }
+    </script>
+</body>
+</html>
